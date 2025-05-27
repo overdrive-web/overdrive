@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Usuario</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="data:,">
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js';
+    import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js';
+    import { getFirestore, collection, doc, setDoc, getDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAUI_wgnkY7XYUuU6wFGebi7hNKd9Nfqeg",
+      authDomain: "overdrive-d3a99.firebaseapp.com",
+      projectId: "overdrive-d3a99",
+      storageBucket: "overdrive-d3a99.firebasestorage.app",
+      messagingSenderId: "874128741475",
+      appId: "1:874128741475:web:5426b04da2a609d01c1456",
+      measurementId: "G-4JBE20JPB5"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const submenuData = {
+      Usuarios: [
+        { name: 'Registros', icon: 'fa-user-plus', html: 'modulos/usuarios/registros/registros.html', css: 'modulos/usuarios/registros/registros.css', js: 'modulos/usuarios/registros/registros.js' }
+      ],
+      Implantes: [
+        { name: 'Cargos Implantes', icon: 'fa-tooth', html: 'modulos/implantes/cargos-implantes/cargos-implantes.html', css: 'modulos/implantes/cargos-implantes/cargos-implantes.css', js: 'modulos/implantes/cargos-implantes/cargos-implantes.js' },
+        { name: 'Cargos Consignación', icon: 'fa-box', html: 'modulos/implantes/cargos-consignacion/cargos-consignacion.html', css: 'modulos/implantes/cargos-consignacion/cargos-consignacion.css', js: 'modulos/implantes/cargos-consignacion/cargos-consignacion.js' },
+        { name: 'Pacientes', icon: 'fa-user', html: 'modulos/implantes/pacientes/pacientes.html', css: 'modulos/implantes/pacientes/pacientes.css', js: 'modulos/implantes/pacientes/pacientes.js' },
+        { name: 'Códigos', icon: 'fa-barcode', html: 'modulos/implantes/codigos/codigos.html', css: 'modulos/implantes/codigos/codigos.css', js: 'modulos/implantes/codigos/codigos.js' },
+        { name: 'Datos Pacientes', icon: 'fa-file-medical', html: 'modulos/implantes/datos-pacientes/datos-pacientes.html', css: 'modulos/implantes/datos-pacientes/datos-pacientes.css', js: 'modulos/implantes/datos-pacientes/datos-pacientes.js' },
+        { name: 'Historial', icon: 'fa-history', html: 'modulos/implantes/historial/historial.html', css: 'modulos/implantes/historial/historial.css', js: 'modulos/implantes/historial/historial.js' }
+      ],
+      Consignacion: [
+        { name: 'Asignación', icon: 'fa-clipboard-list', html: 'modulos/consignacion/asignacion/asignacion.html', css: 'modulos/consignacion/asignacion/asignacion.css', js: 'modulos/consignacion/asignacion/asignacion.js' },
+        { name: 'Ficha', icon: 'fa-file-alt', html: 'modulos/consignacion/ficha/ficha.html', css: 'modulos/consignacion/ficha/ficha.css', js: 'modulos/consignacion/ficha/ficha.js' },
+        { name: 'Lotes', icon: 'fa-boxes', html: 'modulos/consignacion/lotes/lotes.html', css: 'modulos/consignacion/lotes/lotes.css', js: 'modulos/consignacion/lotes/lotes.js' }
+      ],
+      Corporativo: [
+        { name: 'Reporte 2024', icon: 'fa-chart-bar', html: 'modulos/corporativo/reporte-2024/reporte-2024.html', css: 'modulos/corporativo/reporte-2024/reporte-2024.css', js: 'modulos/corporativo/reporte-2024/reporte-2024.js' },
+        { name: 'Reporte 2025', icon: 'fa-chart-bar', html: 'modulos/corporativo/reporte-2025/reporte-2025.html', css: 'modulos/corporativo/reporte-2025/reporte-2025.css', js: 'modulos/corporativo/reporte-2025/reporte-2025.js' },
+        { name: 'RP 2024', icon: 'fa-file-excel', html: 'modulos/corporativo/rp-2024/rp-2024.html', css: 'modulos/corporativo/rp-2024/rp-2024.css', js: 'modulos/corporativo/rp-2024/rp-2024.js' },
+        { name: 'RO 2025', icon: 'fa-file-excel', html: 'modulos/corporativo/ro-2025/ro-2025.html', css: 'modulos/corporativo/ro-2025/ro-2025.css', js: 'modulos/corporativo/ro-2025/ro-2025.js' }
+      ],
+      Laboratorio: [
+        { name: 'Facturación', icon: 'fa-money-bill', html: 'modulos/laboratorio/facturacion/facturacion.html', css: 'modulos/laboratorio/facturacion/facturacion.css', js: 'modulos/laboratorio/facturacion/facturacion.js' },
+        { name: 'Órdenes de Compra', icon: 'fa-shopping-cart', html: 'modulos/laboratorio/ordenes-compra/ordenes-compra.html', css: 'modulos/laboratorio/ordenes-compra/ordenes-compra.css', js: 'modulos/laboratorio/ordenes-compra/ordenes-compra.js' },
+        { name: 'Detalles', icon: 'fa-info-circle', html: 'modulos/laboratorio/detalles/detalles.html', css: 'modulos/laboratorio/detalles/detalles.css', js: 'modulos/laboratorio/detalles/detalles.js' }
+      ],
+      Prestaciones: [
+        { name: 'Empresas', icon: 'fa-building', html: 'modulos/prestaciones/empresas/empresas.html', css: 'modulos/prestaciones/empresas/empresas.css', js: 'modulos/prestaciones/empresas/empresas.js' },
+        { name: 'Médicos', icon: 'fa-user-md', html: 'modulos/prestaciones/medicos/medicos.html', css: 'modulos/prestaciones/medicos/medicos.css', js: 'modulos/prestaciones/medicos/medicos.js' },
+        { name: 'Previsiones', icon: 'fa-shield-alt', html: 'modulos/prestaciones/previsiones/previsiones.html', css: 'modulos/prestaciones/previsiones/previsiones.css', js: 'modulos/prestaciones/previsiones/previsiones.js' },
+        { name: 'Áreas Clínicas', icon: 'fa-hospital', html: 'modulos/prestaciones/areas-clinicas/areas-clinicas.html', css: 'modulos/prestaciones/areas-clinicas/areas-clinicas.css', js: 'modulos/prestaciones/areas-clinicas/areas-clinicas.js' },
+        { name: 'CTS Proveedores', icon: 'fa-truck-loading', html: 'modulos/prestaciones/cts-proveedores/cts-proveedores.html', css: 'modulos/prestaciones/cts-proveedores/cts-proveedores.css', js: 'modulos/prestaciones/cts-proveedores/cts-proveedores.js' },
+        { name: 'CTS Clínico', icon: 'fa-stethoscope', html: 'modulos/prestaciones/cts-clinico/cts-clinico.html', css: 'modulos/prestaciones/cts-clinico/cts-clinico.css', js: 'modulos/prestaciones/cts-clinico/cts-clinico.js' }
+      ],
+      Apuntes: [
+        { name: 'Notas', icon: 'fa-sticky-note', html: 'modulos/apuntes/notas/notas.html', css: 'modulos/apuntes/notas/notas.css', js: 'modulos/apuntes/notas/notas.js' },
+        { name: 'Block', icon: 'fa-calendar', html: 'modulos/apuntes/block/block.html', css: 'modulos/apuntes/block/block.css', js: 'modulos/apuntes/block/block.js' }
+      ]
+    };
+
+    const modulesContainer = document.getElementById('modulesContainer');
+    function renderModules() {
+      modulesContainer.innerHTML = '';
+      Object.keys(submenuData).forEach(module => {
+        const moduleDiv = document.createElement('div');
+        moduleDiv.className = 'border p-4 rounded-md';
+        moduleDiv.innerHTML = `<h3 class="font-semibold">${module}</h3>`;
+        const submodulesDiv = document.createElement('div');
+        submodulesDiv.className = 'flex flex-wrap gap-4 mt-2';
+        submenuData[module].forEach(submodule => {
+          const label = document.createElement('label');
+          label.className = 'flex items-center space-x-2';
+          label.innerHTML = `
+            <input type="checkbox" name="permissions" value="${module}:${submodule.name}" class="h-4 w-4">
+            <i class="fas ${submodule.icon}"></i>
+            <span>${submodule.name}</span>
+          `;
+          submodulesDiv.appendChild(label);
+        });
+        moduleDiv.appendChild(submodulesDiv);
+        modulesContainer.appendChild(moduleDiv);
+      });
+    }
+
+    const roleSelect = document.getElementById('role');
+    const modulesSection = document.getElementById('modulesSection');
+    roleSelect.addEventListener('change', (e) => {
+      if (e.target.value === 'Operador') {
+        modulesSection.classList.remove('hidden');
+        renderModules();
+      } else {
+        modulesSection.classList.add('hidden');
+        modulesContainer.innerHTML = '';
+      }
+    });
+
+    function getAllPermissions() {
+      const permissions = [];
+      Object.keys(submenuData).forEach(module => {
+        submenuData[module].forEach(submodule => {
+          permissions.push(`${module}:${submodule.name}`);
+        });
+      });
+      return permissions;
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const errorMessage = document.getElementById('errorMessage');
+      const successMessage = document.getElementById('successMessage');
+      errorMessage.classList.add('hidden');
+      successMessage.classList.add('hidden');
+
+      const formData = new FormData(e.target);
+      const password = formData.get('password');
+      const confirmPassword = formData.get('confirmPassword');
+      const role = formData.get('role');
+      const username = formData.get('username').trim();
+      const email = formData.get('email').trim();
+
+      if (password !== confirmPassword) {
+        errorMessage.textContent = 'Las contraseñas no coinciden.';
+        errorMessage.classList.remove('hidden');
+        return;
+      }
+
+      try {
+        const usernameRef = doc(db, 'usernames', username);
+        const usernameSnap = await getDoc(usernameRef);
+        if (usernameSnap.exists()) {
+          errorMessage.textContent = 'El nombre de usuario ya está en uso.';
+          errorMessage.classList.remove('hidden');
+          return;
+        }
+
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        let permissions = [];
+        if (role === 'Administrador') {
+          permissions = getAllPermissions();
+        } else {
+          document.querySelectorAll('input[name="permissions"]:checked').forEach(checkbox => {
+            permissions.push(checkbox.value);
+          });
+        }
+
+        await setDoc(doc(db, 'users', user.uid), {
+          fullName: formData.get('fullName'),
+          rut: formData.get('rut'),
+          gender: formData.get('gender'),
+          birthDate: formData.get('birthDate'),
+          email: email,
+          username: username,
+          role: role,
+          permissions: permissions,
+          createdAt: serverTimestamp()
+        });
+
+        await setDoc(doc(db, 'usernames', username), {
+          email: email,
+          userId: user.uid
+        });
+
+        successMessage.textContent = 'Usuario registrado exitosamente.';
+        successMessage.classList.remove('hidden');
+        e.target.reset();
+        modulesSection.classList.add('hidden');
+      } catch (error) {
+        let errorText = error.message;
+        if (error.code === 'auth/email-already-in-use') {
+          errorText = 'El correo electrónico ya está registrado.';
+        } else if (error.code === 'auth/invalid-email') {
+          errorText = 'El correo electrónico es inválido.';
+        } else if (error.code === 'auth/weak-password') {
+          errorText = 'La contraseña es demasiado débil.';
+        }
+        errorMessage.textContent = errorText;
+        errorMessage.classList.remove('hidden');
+      }
+    });
+  </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
+    <h2 class="text-2xl font-bold mb-6 text-center">Registro de Usuario</h2>
+    <form id="registerForm" class="space-y-4">
+      <div>
+        <label for="fullName" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+        <input type="text" id="fullName" name="fullName" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+      </div>
+      <div>
+        <label for="rut" class="block text-sm font-medium text-gray-700">RUT</label>
+        <input type="text" id="rut" name="rut" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+      </div>
+      <div>
+        <label for="gender" class="block text-sm font-medium text-gray-700">Identidad</label>
+        <select id="gender" name="gender" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+          <option value="">Seleccione</option>
+          <option value="Hombre">Hombre</option>
+          <option value="Mujer">Mujer</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+      <div>
+        <label for="birthDate" class="block text-sm font-medium text-gray-700">Fecha de Nacimiento</label>
+        <input type="date" id="birthDate" name="birthDate" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+        <input type="email" id="email" name="email" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+      </div>
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700">Usuario</label>
+        <input type="text" id="username" name="username" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+        <input type="password" id="password" name="password" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+      </div>
+      <div>
+        <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+      </div>
+      <div>
+        <label for="role" class="block text-sm font-medium text-gray-700">Rol</label>
+        <select id="role" name="role" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+          <option value="">Seleccione</option>
+          <option value="Administrador">Administrador</option>
+          <option value="Operador">Operador</option>
+        </select>
+      </div>
+      <div id="modulesSection" class="hidden">
+        <label class="block text-sm font-medium text-gray-700">Módulos y Permisos</label>
+        <div id="modulesContainer" class="space-y-2">
+        </div>
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Registrar</button>
+    </form>
+    <p id="errorMessage" class="text-red-500 text-sm mt-4 hidden"></p>
+    <p id="successMessage" class="text-green-500 text-sm mt-4 hidden"></p>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>
