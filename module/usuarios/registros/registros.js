@@ -17,14 +17,17 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 const submenuData = {
-  Usuarios: [{ name: 'Registros' }],
+  Usuarios: [
+    { name: 'Registros' }
+  ],
   Implantes: [
     { name: 'Cargos Implantes' },
     { name: 'Cargos Consignación' },
     { name: 'Pacientes' },
     { name: 'Códigos' },
-    { name: 'Datos Pacientes' },
-    { name: 'Historial' }
+    { name: 'Paquetización' },
+    { name: 'Stock' },
+    { name: 'Contenedores' }
   ],
   Consignacion: [
     { name: 'Asignación' },
@@ -52,9 +55,16 @@ const submenuData = {
   ],
   Apuntes: [
     { name: 'Notas' },
-    { name: 'Block' }
+    { name: 'Bloc' }
+  ],
+  Resumen: [
+    { name: 'Visor' },
+    { name: 'ImplanteView' },
+    { name: 'Consigna' },
+    { name: 'FactuView' }
   ]
 };
+
 
 const registerForm = document.getElementById('registrar-btn');
 const roleSelect = document.getElementById('role');
