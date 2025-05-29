@@ -135,18 +135,22 @@ const submenuData = {
         { name: 'Registros', icon: 'fa-user-plus', html: 'modulos/usuarios/registros/registros.html', css: 'modulos/usuarios/registros/registros.css', js: 'modulos/usuarios/registros/registros.js' }
     ],
     Implantes: [
-        { name: 'Cargos Implantes', icon: 'fa-tooth', html: 'modulos/implantes/cargos-implantes/cargos-implantes.html', css: 'modulos/implantes/cargos-implantes/cargos-implantes.css', js: 'modulos/implantes/cargos-implantes/cargos-implantes.js' },
-        { name: 'Cargos Consignación', icon: 'fa-box', html: 'modulos/implantes/cargos-consignacion/cargos-consignacion.html', css: 'modulos/implantes/cargos-consignacion/cargos-consignacion.css', js: 'modulos/implantes/cargos-consignacion/cargos-consignacion.js' },
-        { name: 'Pacientes', icon: 'fa-user', html: 'modulos/implantes/pacientes/pacientes.html', css: 'modulos/implantes/pacientes/pacientes.css', js: 'modulos/implantes/pacientes/pacientes.js' },
-        { name: 'Códigos', icon: 'fa-barcode', html: 'modulos/implantes/codigos/codigos.html', css: 'modulos/implantes/codigos/codigos.css', js: 'modulos/implantes/codigos/codigos.js' },
-        { name: 'Datos Pacientes', icon: 'fa-file-medical', html: 'modulos/implantes/datos-pacientes/datos-pacientes.html', css: 'modulos/implantes/datos-pacientes/datos-pacientes.css', js: 'modulos/implantes/datos-pacientes/datos-pacientes.js' },
-        { name: 'Historial', icon: 'fa-history', html: 'modulos/implantes/historial/historial.html', css: 'modulos/implantes/historial/historial.css', js: 'modulos/implantes/historial/historial.js' }
+    { name: 'Cargos Implantes', icon: 'fa-tooth', html: 'modulos/implantes/cargos-implantes/cargos-implantes.html', css: 'modulos/implantes/cargos-implantes/cargos-implantes.css', js: 'modulos/implantes/cargos-implantes/cargos-implantes.js' },
+    { name: 'Cargos Consignación', icon: 'fa-box', html: 'modulos/implantes/cargos-consignacion/cargos-consignacion.html', css: 'modulos/implantes/cargos-consignacion/cargos-consignacion.css', js: 'modulos/implantes/cargos-consignacion/cargos-consignacion.js' },
+    { name: 'Pacientes', icon: 'fa-user', html: 'modulos/implantes/pacientes/pacientes.html', css: 'modulos/implantes/pacientes/pacientes.css', js: 'modulos/implantes/pacientes/pacientes.js' },
+    { name: 'Códigos', icon: 'fa-barcode', html: 'modulos/implantes/codigos/codigos.html', css: 'modulos/implantes/codigos/codigos.css', js: 'modulos/implantes/codigos/codigos.js' },
+    { name: 'Paquetización', icon: 'fa-boxes', html: 'module/implantes/paquetizacion/paquetizacion.html', css: 'module/implantes/paquetizacion/paquetizacion.css', js: 'module/implantes/paquetizacion/paquetizacion.js' },
+    { name: 'Stock', icon: 'fa-warehouse', html: 'modulos/implantes/stock/stock.html', css: 'modulos/implantes/stock/stock.css', js: 'modulos/implantes/stock/stock.js' },
+    { name: 'Contenedores', icon: 'fa-box-archive', html: 'modulos/implantes/contenedores/contenedores.html', css: 'modulos/implantes/contenedores/contenedores.css', js: 'modulos/implantes/contenedores/contenedores.js' }
+   
     ],
+
     Consignacion: [
         { name: 'Asignación', icon: 'fa-clipboard-list', html: 'modulos/consignacion/asignacion/asignacion.html', css: 'modulos/consignacion/asignacion/asignacion.css', js: 'modulos/consignacion/asignacion/asignacion.js' },
         { name: 'Ficha', icon: 'fa-file-alt', html: 'modulos/consignacion/ficha/ficha.html', css: 'modulos/consignacion/ficha/ficha.css', js: 'modulos/consignacion/ficha/ficha.js' },
         { name: 'Lotes', icon: 'fa-boxes', html: 'modulos/consignacion/lotes/lotes.html', css: 'modulos/consignacion/lotes/lotes.css', js: 'modulos/consignacion/lotes/lotes.js' }
     ],
+
     Corporativo: [
         { name: 'Reporte 2024', icon: 'fa-chart-bar', html: 'modulos/corporativo/reporte-2024/reporte-2024.html', css: 'modulos/corporativo/reporte-2024/reporte-2024.css', js: 'modulos/corporativo/reporte-2024/reporte-2024.js' },
         { name: 'Reporte 2025', icon: 'fa-chart-bar', html: 'modulos/corporativo/reporte-2025/reporte-2025.html', css: 'modulos/corporativo/reporte-2025/reporte-2025.css', js: 'modulos/corporativo/reporte-2025/reporte-2025.js' },
@@ -154,9 +158,15 @@ const submenuData = {
         { name: 'RO 2025', icon: 'fa-file-excel', html: 'modulos/corporativo/ro-2025/ro-2025.html', css: 'modulos/corporativo/ro-2025/ro-2025.css', js: 'modulos/corporativo/ro-2025/ro-2025.js' }
     ],
     Laboratorio: [
-        { name: 'Facturación', icon: 'fa-money-bill', html: 'modulos/laboratorio/facturación/facturación.html', css: 'modulos/laboratorio/facturación/fact-laboratorio.css', js: 'modulos/laboratorio/facturación/facturación.js' },
+        { name: 'Facturación', icon: 'fa-money-bill', html: 'modulos/laboratorio/facturacion/facturacion.html', css: 'modulos/laboratorio/facturacion/facturacion.css', js: 'modulos/laboratorio/facturacion/facturacion.js' },
         { name: 'Órdenes de Compra', icon: 'fa-shopping-cart', html: 'modulos/laboratorio/ordenes-compra/ordenes-compra.html', css: 'modulos/laboratorio/ordenes-compra/ordenes-compra.css', js: 'modulos/laboratorio/ordenes-compra/ordenes-compra.js' },
         { name: 'Detalles', icon: 'fa-info-circle', html: 'modulos/laboratorio/detalles/detalles.html', css: 'modulos/laboratorio/detalles/detalles.css', js: 'modulos/laboratorio/detalles/detalles.js' }
+    ],
+    Resumen: [
+    { name: 'Visor', icon: 'fa-eye', html: 'modulos/resumen/visor/visor.html', css: 'modulos/resumen/visor/visor.css', js: 'modulos/resumen/visor/visor.js' },
+    { name: 'ImplanteView', icon: 'fa-syringe', html: 'modulos/resumen/implanteview/implanteview.html', css: 'modulos/resumen/implanteview/implanteview.css', js: 'modulos/resumen/implanteview/implanteview.js' },
+    { name: 'Consigna', icon: 'fa-dolly-flatbed', html: 'modulos/resumen/consigna/consigna.html', css: 'modulos/resumen/consigna/consigna.css', js: 'modulos/resumen/consigna/consigna.js' },
+    { name: 'FactuView', icon: 'fa-file-invoice', html: 'modulos/resumen/factuview/factuview.html', css: 'modulos/resumen/factuview/factuview.css', js: 'modulos/resumen/factuview/factuview.js' }
     ],
     Prestaciones: [
         { name: 'Empresas', icon: 'fa-building', html: 'modulos/prestaciones/empresas/empresas.html', css: 'modulos/prestaciones/empresas/empresas.css', js: 'modulos/prestaciones/empresas/empresas.js' },
@@ -168,7 +178,7 @@ const submenuData = {
     ],
     Apuntes: [
         { name: 'Notas', icon: 'fa-sticky-note', html: 'modulos/apuntes/notas/notas.html', css: 'modulos/apuntes/notas/notas.css', js: 'modulos/apuntes/notas/notas.js' },
-        { name: 'Block', icon: 'fa-calendar', html: 'modulos/apuntes/block/block.html', css: 'modulos/apuntes/block/block.css', js: 'modulos/apuntes/block/block.js' }
+        { name: 'Bloc', icon: 'fa-calendar', html: 'modulos/apuntes/bloc/bloc.html', css: 'modulos/apuntes/bloc/bloc.css', js: 'modulos/apuntes/bloc/bloc.js' }
     ]
 };
 
