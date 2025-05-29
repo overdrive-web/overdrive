@@ -1,0 +1,83 @@
+<div class="ordenes-container">
+    <h2>Gestión de Órdenes de Compra</h2>
+    <hr class="divider">
+
+    <div class="form-container">
+        <div class="form-group">
+            <label for="filter-year">Año:</label>
+            <select id="filter-year"></select>
+        </div>
+        <div class="form-group">
+            <label for="filter-month">Mes:</label>
+            <select id="filter-month"></select>
+        </div>
+        <div class="form-group form-group-button">
+            <button id="import-btn">Importar</button>
+            <input type="file" id="import-file" accept=".xlsx, .xls" style="display: none;">
+        </div>
+        <div class="form-group form-group-button">
+            <button id="download-format-btn">Formato</button>
+        </div>
+        <div class="form-group form-group-button">
+            <button id="export-btn">Exportar Excel</button>
+        </div>
+    </div>
+
+    <div id="success-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="success-message-container">
+                <i id="success-icon" class="fas"></i>
+                <div id="success-message" class="success-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-import-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="spinner-container">
+                <span class="loader"></span>
+                <span class="spinner-text">Importando... <span id="import-progress">0%</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table id="ordenes-compra-table">
+            <thead>
+                <tr>
+                    <th><span class="column-title">Código</span> <i class="fas fa-filter filter-icon"
+                            data-column="codigo"></i><span class="resize-handle"></span></th>
+                    <th><span class="column-title">Generación</span> <i class="fas fa-filter filter-icon"
+                            data-column="generacion"></i><span class="resize-handle"></span></th>
+                    <th><span class="column-title">Autorización</span> <i class="fas fa-filter filter-icon"
+                            data-column="autorId"></i><span class="resize-handle"></span></th>
+                    <th><span class="column-title">Sociedad</span> <i class="fas fa-filter filter-icon"
+                            data-column="sociedadId"></i><span class="resize-handle"></span></th>
+                    <th><span class="column-title">Tipo Compra</span> <i class="fas fa-filter filter-icon"
+                            data-column="tipoCompra"></i><span class="resize-handle"></span></th>
+                    <th><span class="column-title">Proveedor</span> <i class="fas fa-filter filter-icon"
+                            data-column="proveedorId"></i><span class="resize-handle"></span></th>
+                    <th><span class="column-title">Digitador</span> <i class="fas fa-filter filter-icon"
+                            data-column="digitadorId"></i><span class="resize-handle"></span></th>
+                    <th><span class="column-title">Nivel Actual</span> <i class="fas fa-filter filter-icon"
+                            data-column="nivelActual"></i><span class="resize-handle"></span></th>
+                    <th><span class="column-title">Nivel OC</span> <i class="fas fa-filter filter-icon"
+                            data-column="nivelOC"></i><span class="resize-handle"></span></th>
+                    <th><span class="column-title">Liberada</span> <i class="fas fa-filter filter-icon"
+                            data-column="liberada"></i><span class="resize-handle"></span></th>
+                    <th><span class="column-title">Total</span> <i class="fas fa-filter filter-icon"
+                            data-column="total"></i><span class="resize-handle"></span></th>
+                    <th><span class="column-title">Estado</span> <i class="fas fa-filter filter-icon"
+                            data-column="estado"></i><span class="resize-handle"></span></th>
+                    <th><span class="column-title">Evento</span> <i class="fas fa-filter filter-icon"
+                            data-column="evento"></i><span class="resize-handle"></span></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="table-footer">
+        <span id="total-records">0 registros</span>
+    </div>
+</div>
+<script type="module" src="ordenes-compra.js"></script>
