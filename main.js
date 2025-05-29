@@ -66,20 +66,31 @@ const submenuData = {
       css: 'module/implantes/codigos/codigos.css',
       js: 'module/implantes/codigos/codigos.js'
     },
-    {
-      name: 'Datos Pacientes',
-      icon: 'fa-file-medical',
-      html: 'module/implantes/datos-pacientes/datos-pacientes.html',
-      css: 'module/implantes/datos-pacientes/datos-pacientes.css',
-      js: 'module/implantes/datos-pacientes/datos-pacientes.js'
+
+    { 
+      name: 'Paquetización', 
+      icon: 'fa-boxes', 
+      html: 'module/implantes/paquetizacion/paquetizacion.html', 
+      css: 'module/implantes/paquetizacion/paquetizacion.css', 
+      js: 'module/implantes/paquetizacion/paquetizacion.js' 
     },
+
     {
-      name: 'Historial',
-      icon: 'fa-history',
-      html: 'module/implantes/historial/historial.html',
-      css: 'module/implantes/historial/historial.css',
-      js: 'module/implantes/historial/historial.js'
+      name: 'Stock',
+      icon: 'fa-warehouse',
+      html: 'module/implantes/stock/stock.html',
+      css: 'module/implantes/stock/stock.css',
+      js: 'module/implantes/stock/stock.js'
+    },
+
+    {
+      name: 'Contenedores',
+      icon: 'fa-box-archive',
+      html: 'module/implantes/contenedores/contenedores.html',
+      css: 'module/implantes/contenedores/contenedores.css',
+      js: 'module/implantes/contenedores/contenedores.js'
     }
+    
   ],
   Consignacion: [
     {
@@ -134,6 +145,7 @@ const submenuData = {
       js: 'module/corporativo/ro-2025/ro-2025.js'
     }
   ],
+
   Laboratorio: [
     {
       name: 'Facturación',
@@ -157,6 +169,38 @@ const submenuData = {
       js: 'module/laboratorio/detalles/detalles.js'
     }
   ],
+  
+  Resumen: [
+  {
+    name: 'Visor',
+    icon: 'fa-eye',
+    html: 'module/resumen/visor/visor.html',
+    css: 'module/resumen/visor/visor.css',
+    js: 'module/resumen/visor/visor.js'
+  },
+  {
+    name: 'ImplanteView',
+    icon: 'fa-syringe',
+    html: 'module/resumen/implanteview/implanteview.html',
+    css: 'module/resumen/implanteview/implanteview.css',
+    js: 'module/resumen/implanteview/implanteview.js'
+  },
+  {
+    name: 'Consigna',
+    icon: 'fa-dolly-flatbed',
+    html: 'module/resumen/consigna/consigna.html',
+    css: 'module/resumen/consigna/consigna.css',
+    js: 'module/resumen/consigna/consigna.js'
+  },
+  {
+    name: 'FactuView',
+    icon: 'fa-file-invoice',
+    html: 'module/resumen/factuview/factuview.html',
+    css: 'module/resumen/factuview/factuview.css',
+    js: 'module/resumen/factuview/factuview.js'
+  }
+  ],
+
   Prestaciones: [
     {
       name: 'Empresas',
@@ -210,11 +254,11 @@ const submenuData = {
       js: 'module/apuntes/notas/notas.js'
     },
     {
-      name: 'Block',
+      name: 'Bloc',
       icon: 'fa-calendar',
-      html: 'module/apuntes/block/block.html',
-      css: 'module/apuntes/block/block.css',
-      js: 'module/apuntes/block/block.js'
+      html: 'module/apuntes/bloc/bloc.html',
+      css: 'module/apuntes/bloc/bloc.css',
+      js: 'module/apuntes/bloc/bloc.js'
     }
   ],
   Usuarios: [
